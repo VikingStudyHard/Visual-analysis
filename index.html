@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天津市</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 style="font-size: 50px">天津市2019年计算机类招聘信息可视化</h1>
+        <h4>2019年硕士生可视分析 第2组</h4>
+        <br>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div id="map" style="height:700px"></div>
+            </div>
+            <div class="col-md-7" >
+                <div id ="tree">
+                    <svg  width="700" height="600"></svg>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+
+            <p  class="text-center" style="margin-top: 30px; font-weight:bold;">不同职位所需学历的分布</p>
+            <div id="dashboard"></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://img.hcharts.cn/highmaps/highmaps.js"></script>
+<script src="https://data.jianshukeji.com/geochina/tianjin.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/d3.v4.min.js"></script>
+
+<script src="js/index.js"></script>
+<script src="js/bootstrap.min.js"></script>s
+</body>
+</html>
