@@ -119,7 +119,7 @@ function treeMoney(id) {
             return d.id.substring(0, d.id.lastIndexOf("."));
         });
 
-    d4.csv("skillsdata.csv", row, function (error, data) {
+    d4.csv("salary_data.csv", row, function (error, data) {
         if (error) throw error;
 
         var root = stratify(data);
