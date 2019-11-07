@@ -4,7 +4,7 @@ var data = [{"name":"和平区","value":2521225},{"name":"河东区","value":208
 // 初始化图表
 var map = new Highcharts.Map('map', {
     title: {
-        text: '2019年天津市各区招聘计算机类职位的数量',
+        text: '2019年天津市各区招聘互联网IT类职位的数量',
         style: {color: '#3E576F', fontSize: '16px'}
     },
     subtitle: {
@@ -98,7 +98,7 @@ function treeMoney(id) {
     }
     var xScale = d4.scaleLinear()
         .domain([0, 5])
-        .range([0, 400]);
+        .range([0, 300]);
 
     var xAxis = d4.axisTop()
         .scale(xScale)
@@ -107,11 +107,11 @@ function treeMoney(id) {
 
     // Setting up a way to handle the data
     var tree = d4.cluster()                 // This D3 API method setup the Dendrogram datum position.
-        .size([height, width - 460])    // Total width - bar chart width = Dendrogram chart width
+        .size([height, width - 500])    // Total width - bar chart width = Dendrogram chart width
         .separation(function separate(a, b) {
             return a.parent == b.parent            // 2 levels tree grouping for category
             || a.parent.parent == b.parent
-            || a.parent == b.parent.parent ? 0.4 : 0.8;
+            || a.parent == b.parent.parent ? 0.3 : 0.8;
         });
 
     var stratify = d4.stratify()            // This D3 API method gives cvs file flat data array dimensions.
@@ -131,9 +131,10 @@ function treeMoney(id) {
             .enter().append("path")
             .attr("class", "link")
             .attr("d", function (d) {
+                d.y = d.y
                 return "M" + d.y + "," + d.x
-                    + "C" + (d.parent.y + 100) + "," + d.x
-                    + " " + (d.parent.y + 100) + "," + d.parent.x
+                    + "C" + (d.parent.y + 20) + "," + d.x
+                    + " " + (d.parent.y + 20) + "," + d.parent.x
                     + " " + d.parent.y + "," + d.parent.x;
             });
 
