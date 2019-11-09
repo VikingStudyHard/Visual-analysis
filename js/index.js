@@ -92,13 +92,13 @@ function treeMoney(id) {
         height = +svg.attr("height"),
         g = svg.append("g").attr("transform", "translate(20,0)");       // move right 20px.
     // x-scale and x-axis
-    var experienceName = ["", "Basic 1.0", "Alright 2.0", "Handy 3.0", "Expert 4.0", "Guru 5.0"];
+    var experienceName = ["0", "5k", "1k", "15k", "20k"];
     var formatSkillPoints = function (d) {
         return experienceName[d % 6];
     }
     var xScale = d4.scaleLinear()
-        .domain([0, 5])
-        .range([0, 300]);
+        .domain([0, 4])
+        .range([0, 400]);
 
     var xAxis = d4.axisTop()
         .scale(xScale)
@@ -171,7 +171,7 @@ function treeMoney(id) {
             .transition()
             .duration(800)
             .attr("width", function (d) {
-                return xScale(d.data.value);
+                return xScale(d.data.value/5000);
             });
 
         leafNodeG.append("text")
@@ -243,16 +243,16 @@ function treeMoney(id) {
             var ballGMovement = ballG.transition()
                 .duration(400)
                 .attr("transform", "translate(" + (d.y
-                    + xScale(d.data.value) + 90) + ","
+                    + xScale(d.data.value/5000) + 90) + ","
                     + (d.x + 1.5) + ")");
 
             ballGMovement.select("circle")
                 .style("fill", d.data.color)
-                .attr("r", 18);
+                .attr("r", 21);
 
             ballGMovement.select("text")
                 .delay(300)
-                .text(Number(d.data.value).toFixed(1));
+                .text(Number(d.data.value));
         }
 
         function handleMouseOut() {
@@ -277,17 +277,18 @@ treeMoney('#tree')
 
 // 饼图
 var freqData=[
-    {State:'银行柜员',freq:{low:4786, mid:45089, high:249}}
-    ,{State:'金融产品',freq:{low:1101, mid:412, high:674}}
-    ,{State:'保险销售',freq:{low:932, mid:2149, high:418}}
-    ,{State:'证券',freq:{low:832, mid:1152, high:1862}}
-    ,{State:'股票',freq:{low:4481, mid:3304, high:948}}
-    ,{State:'担保',freq:{low:1619, mid:167, high:1063}}
-    ,{State:'车险',freq:{low:1819, mid:247, high:1203}}
-    ,{State:'理赔',freq:{low:4498, mid:3852, high:942}}
-    ,{State:'信贷',freq:{low:797, mid:1849, high:1534}}
-    ,{State:'保险内勤',freq:{low:162, mid:379, high:471}}
+    {State:'算法工程师',freq:{low:2212953, mid:5929582, high:46079}}
+    ,{State:'前端工程师',freq:{low:1945933, mid:1128134, high:499}}
+    ,{State:'深度学习',freq:{low:445557, mid:746857, high:46079}}
+    ,{State:'数据分析师',freq:{low:383706, mid:2494170, high:117594}}
+    ,{State:'区块链',freq:{low:12981, mid:81886, high:19998}}
+    ,{State:'电气工程师',freq:{low:2021293, mid:1368252, high:48370}}
+    ,{State:'设备工程师',freq:{low:2134427, mid:2726630, high:152633}}
+    ,{State:'测试工程师',freq:{low:24588, mid:1647647, high:840096}}
+    ,{State:'产品经理',freq:{low:226603, mid:145838, high:0}}
+    ,{State:'产品运营',freq:{low:8986903, mid:4764057, high:155437}}
 ];
+
 function dashboard(id, fData){
     var barColor = 'steelblue';
     function segColor(c){ return {low:"#807dba", mid:"#e08214",high:"#41ab5d"}[c]; }
@@ -298,7 +299,7 @@ function dashboard(id, fData){
     // function to handle histogram.
     function histoGram(fD){
         var hG={},    hGDim = {t: 60, r: 0, b: 30, l: 0};
-        hGDim.w = 500 - hGDim.l - hGDim.r,
+        hGDim.w = 550 - hGDim.l - hGDim.r,
             hGDim.h = 300 - hGDim.t - hGDim.b;
 
         //create svg for histogram.
@@ -380,7 +381,7 @@ function dashboard(id, fData){
 
     // function to handle pieChart.
     function pieChart(pD){
-        var pC ={},    pieDim ={w:250, h: 250};
+        var pC ={},    pieDim ={w:200, h: 200};
         pieDim.r = Math.min(pieDim.w, pieDim.h) / 2;
 
         // create svg for pie chart.
@@ -497,3 +498,4 @@ function dashboard(id, fData){
         leg= legend(tF);  // create the legend.
 }
 dashboard('#dashboard',freqData);
+
